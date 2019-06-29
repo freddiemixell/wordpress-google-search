@@ -31,6 +31,7 @@ class GoogleCSE {
     $this->api_key = $config['api_key'];
     $this->cx = $config['cx'];
     add_shortcode('google_search', array($this, 'shortcode'));
+    add_action('admin_menu', array($this, 'google_search_admin'));
   }
 
   public function shortcode()

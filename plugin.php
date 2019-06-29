@@ -7,6 +7,11 @@ Author URI: https://github.com/freddiemixell
 Version: 0.0.1
 */
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+  exit;
+}
+
 $config = array(
   'api_key' => 'AIzaSyDUb8Sq1NhQPxQCstoG_bzsuEVYah0BMDg',
   'cx'      => '003422635988353438707:zn9yenb4_xq'

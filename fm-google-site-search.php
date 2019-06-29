@@ -14,7 +14,7 @@ In that case 'ABSPATH' will be defined.
 If accessed directly wp-config.php isn't loaded so we exit.
 */
 if ( ! defined( 'ABSPATH' ) ) {
-  exit;
+  die;
 }
 
 $config = array(

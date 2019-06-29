@@ -41,6 +41,22 @@ class GoogleCSE {
   {
     return "This is working";
   }
+
+  public function google_search_admin()
+  {
+    add_menu_page(
+      __( 'Google CSE', $textdomain ),
+      'Google CSE',
+      'manage_options',
+      'fm-google-site-search',
+      array($this, 'render_admin_page')
+    );
+  }
+
+  public function render_admin_page()
+  {
+    esc_html_e( 'Admin Page Test', $textdomain );
+  }
 };
 
 new GoogleCSE( $config );

@@ -7,7 +7,12 @@ Author URI: https://github.com/freddiemixell
 Version: 0.0.1
 */
 
-// Exit if accessed directly
+/*
+Prevent Direct Access
+Description: If WordPress Accesses this wp-config.php will load
+In that case 'ABSPATH' will be defined.
+If accessed directly wp-config.php isn't loaded so we exit.
+*/
 if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }

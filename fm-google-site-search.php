@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
   die;
 }
 
+$textdomain = 'fm-google-site-search';
+
 $config = array(
   'api_key' => 'AIzaSyDUb8Sq1NhQPxQCstoG_bzsuEVYah0BMDg',
   'cx'      => '003422635988353438707:zn9yenb4_xq'

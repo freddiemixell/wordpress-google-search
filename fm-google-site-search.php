@@ -69,17 +69,17 @@ class GoogleCSE {
   public function create_admin_page()
   { 
     ?>
-    <div class="wrap">
+      <div class="wrap">
         <h1><?php echo __( 'Google Search Settings', $this->textdomain ) ?></h1>
         <form method="post" action="options.php">
         <?php
-            // This prints out all hidden setting fields
-            settings_fields( 'google_option_group' );
-            do_settings_sections( 'google-search-settings' );
-            submit_button();
+          // This prints out all hidden setting fields
+          settings_fields( 'google_option_group' );
+          do_settings_sections( 'google-search-settings' );
+          submit_button();
         ?>
         </form>
-    </div>
+      </div>
     <?php
   }
 
@@ -92,39 +92,41 @@ class GoogleCSE {
     );
 
     add_settings_section(
-        'google_search_section_id', // ID
-        __( 'API Key &amp; Search Engine ID', $this->textdomain ), // Title
-        array( $this, 'print_section_info' ), // Callback
-        'google-search-settings' // Page
+      'google_search_section_id', // ID
+      __( 'API Key &amp; Search Engine ID', $this->textdomain ), // Title
+      array( $this, 'print_section_info' ), // Callback
+      'google-search-settings' // Page
     );  
 
     add_settings_field(
-        'api_key', // ID
-        __( 'API Key', $this->textdomain ), // Title
-        array( $this, 'api_key_callback' ), // Callback
-        'google-search-settings', // Page
-        'google_search_section_id' // Section
+      'api_key', // ID
+      __( 'API Key', $this->textdomain ), // Title
+      array( $this, 'api_key_callback' ), // Callback
+      'google-search-settings', // Page
+      'google_search_section_id' // Section
     );      
 
     add_settings_field(
-        'search_id',
-        __( 'Search Engine ID', $this->textdomain ),
-        array( $this, 'search_id_callback' ),
-        'google-search-settings',
-        'google_search_section_id'
+      'search_id',
+      __( 'Search Engine ID', $this->textdomain ),
+      array( $this, 'search_id_callback' ),
+      'google-search-settings',
+      'google_search_section_id'
     );      
   }
 
   public function sanatize( $input )
   {
     $new_input = array();
-        if( isset( $input['api_key'] ) )
-            $new_input['api_key'] = sanitize_text_field( $input['api_key'] );
+    if( isset( $input['api_key'] ) ) {
+      $new_input['api_key'] = sanitize_text_field( $input['api_key'] );
+    }
 
-        if( isset( $input['search_id'] ) )
-            $new_input['search_id'] = sanitize_text_field( $input['search_id'] );
+    if( isset( $input['search_id'] ) ) {
+      $new_input['search_id'] = sanitize_text_field( $input['search_id'] );
+    }
 
-        return $new_input;
+    return $new_input;
   }
 
   public function print_section_info()

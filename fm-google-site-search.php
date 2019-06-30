@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Avoid name collisions
-if (!class_exists('GoogleCSE')) {
+if (! class_exists('GoogleCSE')) {
 
   class GoogleCSE {
 
@@ -50,8 +50,8 @@ if (!class_exists('GoogleCSE')) {
       If not don't display the form
       */
       if (
-        !$this->options['api_key'] ||
-        !$this->options['search_id']
+        ! $this->options['api_key'] ||
+        ! $this->options['search_id']
         ) {
         return;
       }

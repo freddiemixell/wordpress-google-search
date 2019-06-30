@@ -21,10 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 class GoogleCSE {
 
   private $textdomain;
+  private $options;
 
   public function __construct()
   {
     $this->textdomain = 'fm-google-site-search';
+    $this->options = get_option( 'google-options' );
     add_shortcode('google_search', array($this, 'shortcode'));
     add_action('admin_menu', array($this, 'google_search_options_page'));
     add_action( 'admin_init', array($this, 'google_settings') );
@@ -65,9 +67,7 @@ class GoogleCSE {
   }
 
   public function create_admin_page()
-  {
-    // Set class property
-    $this->options = get_option( 'google-options' );
+  { 
     ?>
     <div class="wrap">
         <h1><?php echo __( 'Google Search Settings', $this->textdomain ) ?></h1>

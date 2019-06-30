@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class GoogleCSE {
 
+  private $textdomain;
+
   public function __construct()
   {
     $this->textdomain = 'fm-google-site-search';
@@ -42,8 +44,8 @@ class GoogleCSE {
 
     $form = '<form action="' .  esc_url( admin_url( "admin-post.php" ) ) . '" method="post">';
     $form .= '<input type="hidden" name="action" value="google_search" />';
-    $form .= '<input name="google-search-input" placeholder="Search..." required type="text" />';
-    $form .= '<button class="fm-google-search-submit" id="google-cse-submit">Search</button>';
+    $form .= '<input name="google-search-input" placeholder="' . __( 'Search...', $this->textdomain ) . '" required type="text" />';
+    $form .= '<button class="fm-google-search-submit" id="google-cse-submit">' . __( 'Search', $this->textdomain ) . '</button>';
     $form .= $nonce_field;
     $form .= '</form>';
 
@@ -54,8 +56,8 @@ class GoogleCSE {
   {
     // This page will be under "Settings"
     add_options_page(
-      'Google Search Admin', 
-      'Google Search Settings', 
+      __( 'Google Search Admin', $this->textdomain ), 
+      __( 'Google Search Settings', $this->textdomain ), 
       'manage_options', 
       'google-search-settings', 
       array( $this, 'create_admin_page' )
@@ -68,7 +70,7 @@ class GoogleCSE {
     $this->options = get_option( 'google-options' );
     ?>
     <div class="wrap">
-        <h1>Google Search Settings</h1>
+        <h1><?php echo __( 'Google Search Settings', $this->textdomain ) ?></h1>
         <form method="post" action="options.php">
         <?php
             // This prints out all hidden setting fields
@@ -91,24 +93,24 @@ class GoogleCSE {
 
     add_settings_section(
         'google_search_section_id', // ID
-        'API Key &amp; Search Engine ID', // Title
+        __( 'API Key &amp; Search Engine ID', $this->textdomain ), // Title
         array( $this, 'print_section_info' ), // Callback
         'google-search-settings' // Page
     );  
 
     add_settings_field(
         'api_key', // ID
-        'API Key', // Title 
+        __( 'API Key', $this->textdomain ), // Title
         array( $this, 'api_key_callback' ), // Callback
         'google-search-settings', // Page
-        'google_search_section_id' // Section           
+        'google_search_section_id' // Section
     );      
 
     add_settings_field(
-        'search_id', 
-        'Search Engine ID', 
-        array( $this, 'search_id_callback' ), 
-        'google-search-settings', 
+        'search_id',
+        __( 'Search Engine ID', $this->textdomain ),
+        array( $this, 'search_id_callback' ),
+        'google-search-settings',
         'google_search_section_id'
     );      
   }
@@ -127,9 +129,11 @@ class GoogleCSE {
 
   public function print_section_info()
   {
-    // echo section intro text here
-    echo '<p>Create Search Engine ID: <a href="https://cse.google.com/cse/" target="_blank" rel="noopener noreferrer">https://cse.google.com/cse/</a></p>';
-    echo '<p>Create Google Custom Search v1 api key <a href="https://code.google.com/apis/console/" target="_blank" rel="noopener noreferrer">https://code.google.com/apis/console/</a></p>';
+    $google_cse_url = 'https://cse.google.com/cse/';
+    $google_api_url = 'https://code.google.com/apis/console/';
+
+    echo '<p>' . esc_html__('Create Search Engine ID: ', $this->textdomain ) . '<a href="' . esc_url( $google_cse_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_cse_url, $this->textdomain ) . '</a></p>';
+    echo '<p>' . esc_html__('Create Google Custom Search v1 api key ', $this->textdomain ) . '<a href="' . esc_url( $google_api_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_api_url, $this->textdomain ) . '</a></p>';
   }
 
   public function api_key_callback()

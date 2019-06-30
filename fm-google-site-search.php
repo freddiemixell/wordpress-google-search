@@ -42,6 +42,14 @@ class GoogleCSE {
 
   public function shortcode()
   {
+    /*
+    Do we have our api key and cx?
+    If not don't display the form
+    */
+    if ($this->options == FALSE) {
+      return;
+    }
+
     $nonce_field = wp_nonce_field( 'fm_form_submit', 'fm_nonce', true, false );
 
     $form = '<form action="' .  esc_url( admin_url( "admin-post.php" ) ) . '" method="post">';

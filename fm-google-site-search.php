@@ -35,6 +35,11 @@ if ( ! class_exists( 'GoogleCSE' ) ) {
       add_action( 'admin_init', array( $this, 'google_settings') );
       add_action( 'admin_post_nopriv_google_search', array( $this, 'search_site' ) );
       add_action( 'admin_post_google_search', array( $this, 'search_site') );
+      add_action( 'query_vars', array( $this, 'set_query_var' ) );
+      add_action( 'init', array( $this, 'custom_add_rewrite_rule' ), 10 );
+      add_action( 'init', array( $this, 'google_search_flush_rewrite_rules_maybe' ), 20 );
+      add_filter('template_include', array( $this, 'google_results_page' ) );
+      register_activation_hook( __FILE__, array( $this, 'flush_on_activate') );
     }
   
     public function search_site()
@@ -167,7 +172,42 @@ if ( ! class_exists( 'GoogleCSE' ) ) {
         isset( $this->options['search_id'] ) ? esc_attr( $this->options['search_id'] ) : ''
       );
     }
-  
+
+    public function set_query_var( $vars )
+    {
+      array_push($vars, 'results_page'); // ref url redirected to in add rewrite rule
+      return $vars;
+    }
+
+    public function custom_add_rewrite_rule()
+    {
+      add_rewrite_rule('^google-search-results$','index.php?results_page=1','top');
+      flush_rewrite_rules();
+    }
+    
+    public function google_results_page( $template )
+    {
+      if( get_query_var( 'results_page' ) ){
+        $template = WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) ."/views/results_page.php";
+      }
+      return $template;
+    }
+
+    public function flush_on_activate()
+    {
+      if ( ! get_option( 'google_search_flush_rewrite_rules_flag' ) ) {
+        add_option( 'google_search_flush_rewrite_rules_flag', true );
+      }
+    }
+
+    public function google_search_flush_rewrite_rules_maybe()
+    {
+      if ( get_option( 'google_search_flush_rewrite_rules_flag' ) ) {
+        flush_rewrite_rules();
+        delete_option( 'google_search_flush_rewrite_rules_flag' );
+      }
+    }
+
   // End Class
   };
 

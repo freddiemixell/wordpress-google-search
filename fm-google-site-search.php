@@ -47,8 +47,8 @@ class GoogleCSE {
     If not don't display the form
     */
     if (
-      $this->options['api_key'] === FALSE ||
-      $this->options['search_id'] === FALSE
+      !$this->options['api_key'] ||
+      !$this->options['search_id']
       ) {
       return;
     }
@@ -81,7 +81,7 @@ class GoogleCSE {
   { 
     ?>
       <div class="wrap">
-        <h1><?php echo __( 'Google Search Settings', $this->textdomain ) ?></h1>
+        <h1><?php echo esc_html__( 'Google Search Settings', $this->textdomain ) ?></h1>
         <form method="post" action="options.php">
         <?php
           // This prints out all hidden setting fields

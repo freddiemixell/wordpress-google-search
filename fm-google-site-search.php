@@ -46,7 +46,10 @@ class GoogleCSE {
     Do we have our api key and cx?
     If not don't display the form
     */
-    if ($this->options == FALSE) {
+    if (
+      $this->options['api_key'] == FALSE ||
+      $this->options['search_id'] == FALSE
+      ) {
       return;
     }
 

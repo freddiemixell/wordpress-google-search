@@ -47,8 +47,8 @@ class GoogleCSE {
     If not don't display the form
     */
     if (
-      $this->options['api_key'] == FALSE ||
-      $this->options['search_id'] == FALSE
+      $this->options['api_key'] === FALSE ||
+      $this->options['search_id'] === FALSE
       ) {
       return;
     }

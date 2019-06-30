@@ -58,8 +58,7 @@ class GoogleCSE {
   {
     global $wpdb;
     $table_name = $wpdb->prefix . 'fm_google_site_search';
-    $sql = "DROP TABLE IF EXISTS $table_name";
-    $wpdb->query($sql);
+    $wpdb->query( $wpdb->prepare( "DROP TABLE IF EXISTS %s", $table_name ) );
   }
 
   public function shortcode()

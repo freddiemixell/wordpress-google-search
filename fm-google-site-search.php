@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Avoid name collisions
-if (! class_exists('GoogleCSE')) {
+if ( ! class_exists( 'GoogleCSE' ) ) {
 
   class GoogleCSE {
 
@@ -30,11 +30,11 @@ if (! class_exists('GoogleCSE')) {
     {
       $this->textdomain = 'fm-google-site-search';
       $this->options = get_option( 'google-options' );
-      add_shortcode('google_search', array($this, 'shortcode'));
-      add_action('admin_menu', array($this, 'google_search_options_page'));
-      add_action( 'admin_init', array($this, 'google_settings') );
-      add_action( 'admin_post_nopriv_google_search', array($this, 'search_site') );
-      add_action( 'admin_post_google_search', array($this, 'search_site') );
+      add_shortcode( 'google_search', array( $this, 'shortcode' ) );
+      add_action( 'admin_menu', array( $this, 'google_search_options_page' ) );
+      add_action( 'admin_init', array( $this, 'google_settings') );
+      add_action( 'admin_post_nopriv_google_search', array( $this, 'search_site' ) );
+      add_action( 'admin_post_google_search', array( $this, 'search_site') );
     }
   
     public function search_site()
@@ -148,15 +148,15 @@ if (! class_exists('GoogleCSE')) {
       $google_cse_url = 'https://cse.google.com/cse/';
       $google_api_url = 'https://code.google.com/apis/console/';
   
-      echo '<p>' . esc_html__('Create Search Engine ID: ', $this->textdomain ) . '<a href="' . esc_url( $google_cse_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_cse_url, $this->textdomain ) . '</a></p>';
-      echo '<p>' . esc_html__('Create Google Custom Search v1 api key ', $this->textdomain ) . '<a href="' . esc_url( $google_api_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_api_url, $this->textdomain ) . '</a></p>';
+      echo '<p>' . esc_html__( 'Create Search Engine ID: ', $this->textdomain ) . '<a href="' . esc_url( $google_cse_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_cse_url, $this->textdomain ) . '</a></p>';
+      echo '<p>' . esc_html__( 'Create Google Custom Search v1 api key ', $this->textdomain ) . '<a href="' . esc_url( $google_api_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( $google_api_url, $this->textdomain ) . '</a></p>';
     }
   
     public function api_key_callback()
     {
       printf(
         '<input type="text" id="api_key" name="google-options[api_key]" value="%s" />',
-        isset( $this->options['api_key'] ) ? esc_attr( $this->options['api_key']) : ''
+        isset( $this->options['api_key'] ) ? esc_attr( $this->options['api_key'] ) : ''
       );
     }
   
@@ -164,7 +164,7 @@ if (! class_exists('GoogleCSE')) {
     {
       printf(
         '<input type="text" id="search_id" name="google-options[search_id]" value="%s" />',
-        isset( $this->options['search_id'] ) ? esc_attr( $this->options['search_id']) : ''
+        isset( $this->options['search_id'] ) ? esc_attr( $this->options['search_id'] ) : ''
       );
     }
   

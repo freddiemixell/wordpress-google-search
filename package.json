@@ -19,5 +19,7 @@
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-spinners": "^0.5.5"
+  }
 }

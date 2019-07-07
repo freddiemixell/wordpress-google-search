@@ -79,7 +79,7 @@ class Fm_Google_Site_Search {
     $this->plugin_name = 'fm-google-site-search';
     $this->textdomain = 'fm-google-site-search';
     $this->options = array_merge(
-      get_option( 'google-options' ),
+      is_array(get_option( 'google-options' )) ? get_option( 'google-options' ) : array('api_key' => '', 'search_id' => ''),
       array( 'search_url_id' => get_option( 'fm-google-site-search-results-id' ) )
     );
 

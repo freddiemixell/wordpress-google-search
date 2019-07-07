@@ -75,6 +75,17 @@ class Fm_Google_Site_Search_Public {
 
   public function search_results() {
 
+    /*
+    Do we have our api key and cx?
+    If not don't display the form
+    */
+    if (
+      ! $this->options['api_key'] ||
+      ! $this->options['search_id']
+      ) {
+      return;
+    }
+
     require_once( FM_GOOGLE_SITE_SEARCH_PATH . '/public/partials/fm-google-site-search-public-results.php');
   }
   
@@ -85,15 +96,13 @@ class Fm_Google_Site_Search_Public {
     */
     if (
       ! $this->options['api_key'] ||
-      ! $this->options['search_id'] ||
-      ! $this->options['search_url_id']
+      ! $this->options['search_id']
       ) {
       return;
     }
 
     $data = array(
-      'textdomain' => $this->textdomain,
-      'search_url_id' => $this->options['search_url_id'],
+      'textdomain' => $this->textdomain
     );
 
     require_once( FM_GOOGLE_SITE_SEARCH_PATH . '/public/partials/fm-google-site-search-public-display.php' );

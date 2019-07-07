@@ -71,7 +71,7 @@ function SearchResults(props) {
   if (loading) {
     return (
       <Loader>
-        <BeatLoader size={25} />
+        <BeatLoader size={25} color="#0073aa" />
       </Loader>
     );
   }

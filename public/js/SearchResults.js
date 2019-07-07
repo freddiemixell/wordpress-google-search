@@ -1,6 +1,13 @@
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
 
+const Loader = styled.div`
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+`;
+
 const ResultContainer = styled.ul`
   list-style: none;
   margin: 0;
@@ -63,9 +70,9 @@ function SearchResults(props) {
 
   if (loading) {
     return (
-      <BeatLoader
-        size={15}
-      />
+      <Loader>
+        <BeatLoader size={25} />
+      </Loader>
     );
   }
 

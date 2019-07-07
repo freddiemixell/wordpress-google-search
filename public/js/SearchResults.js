@@ -1,3 +1,4 @@
+import BeatLoader from 'react-spinners/BeatLoader';
 
 function SearchResults(props) {
   console.log(props);
@@ -15,6 +16,14 @@ function SearchResults(props) {
       </li>
     );
   }) : null;
+
+  if (displayResults === null) {
+    return (
+      <BeatLoader
+        size={15}
+      />
+    );
+  }
 
   return <ul>{ displayResults }</ul>
 }

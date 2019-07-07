@@ -35,7 +35,7 @@ const ResultItem = styled.li`
 
 function SearchResults(props) {
 
-  const { error } = props;
+  const { error, loading } = props;
 
   const results = props.results !== null
     ? props.results.items
@@ -61,7 +61,7 @@ function SearchResults(props) {
       break;
   }
 
-  if (displayResults === null) {
+  if (loading) {
     return (
       <BeatLoader
         size={15}

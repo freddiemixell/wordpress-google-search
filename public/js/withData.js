@@ -12,6 +12,7 @@ function withData(WrappedComponent) {
         handleChange: this.handleChange.bind(this),
         searchSite: this.searchSite.bind(this),
         error: null,
+        loading: false,
       }
 
       this.searchSite = this.searchSite.bind(this);
@@ -23,9 +24,10 @@ function withData(WrappedComponent) {
         this.setState({error: 1});
         return;
       }
+      this.setState({loading: true});
       fetch(`/wp-json/fm-google-site-search/v1/search_site/?query=${query}`)
         .then(res => res.json())
-        .then(results => this.setState({results, query, error: null}))
+        .then(results => this.setState({results, query, error: null, loading: false}))
         .catch(() => this.setState({error: 2}))
     }
 
@@ -40,10 +42,12 @@ function withData(WrappedComponent) {
         this.setState({error: 1});
         return;
       }
-      console.log(query)
+
+      this.setState({loading: true});
+
       fetch(`/wp-json/fm-google-site-search/v1/search_site/?query=${query}`)
       .then(res => res.json())
-      .then(results => this.setState({results, query, error: null}))
+      .then(results => this.setState({results, query, error: null, loading: false}))
       .catch(() => this.setState({error: 2}))
     }
 

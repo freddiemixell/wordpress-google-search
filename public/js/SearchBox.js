@@ -28,11 +28,20 @@ const Submit = styled.input.attrs(() => ({
 
 function SearchBox(props) {
 
+  const {
+    searchSite,
+    query,
+    handleChange
+  } = props;
+
   return (
-    <Form {...props}>
+    <Form searchSite={searchSite}>
       <label>
       <span className="screen-reader-text">Search for: </span>
-        <SearchInput {...props} />
+        <SearchInput
+          query={query}
+          handleChange={handleChange}
+        />
       </label>
       <Submit />
     </Form>

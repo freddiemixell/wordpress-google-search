@@ -1,5 +1,5 @@
 var urlParams = new URLSearchParams(window.location.search);
-const Component = wp.element.Component;
+const { Component } = wp.element;
 
 function withData(WrappedComponent) {
   return class extends Component {

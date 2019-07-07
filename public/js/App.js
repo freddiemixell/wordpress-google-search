@@ -5,7 +5,7 @@ import Pagination from './Pagination';
 
 import withData from './withData';
 
-const Fragment = wp.element.Fragment;
+const { Fragment } = wp.element;
 
 function App(props) {
   return (

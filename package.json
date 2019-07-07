@@ -5,8 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "watch": "webpack --watch --mode development"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

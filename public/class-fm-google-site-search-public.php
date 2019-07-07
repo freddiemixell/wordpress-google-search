@@ -117,6 +117,7 @@ class Fm_Google_Site_Search_Public {
 
   public function search_site(WP_REST_Request $request) {
     $query = $request['query'];
+    $start = isset( $request['start'] ) ? $request['start'] : null;
     $base_url = 'https://www.googleapis.com/customsearch/v1';
     $fields = 'items(title,link,snippet),queries,searchInformation(formattedSearchTime,formattedTotalResults)';
     global $wp_version;
@@ -133,6 +134,10 @@ class Fm_Google_Site_Search_Public {
       '&cx=' . $this->options['search_id'] .
       '&q=' . $query .
       '&fields=' . $fields;
+
+    if ($start !== null) {
+      $request = $request . '&start=' . $start;
+    }
 
     $response = wp_remote_get( esc_url_raw( $request ), $args);
 

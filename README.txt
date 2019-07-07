@@ -16,7 +16,7 @@ Easy Google Site Search allows you to create a GoogleCSE with the Google Custom 
 
 == Installation ==
 
-1. Upload `fm-google-site-search/` to the `/wp-content/plugins/` directory
+1. Upload `wordpress-google-search/` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Results Page will be generated.
 4. Place `[google_search]` shortcode anywhere you want to search

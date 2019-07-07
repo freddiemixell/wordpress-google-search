@@ -1,4 +1,12 @@
 {
   "presets": ["react", "env"],
-  "plugins": ["emotion"]
+  "plugins": [
+    ["emotion"],
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": false
+      }
+    ]
+  ]
 }

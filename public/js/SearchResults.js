@@ -39,11 +39,11 @@ function SearchResults(props) {
     : [];
 
   const displayResults =  (typeof results !== 'undefined' && results.length > 0 ) ? results.map((result) => {
-    const { title, link, displayLink, snippet } = result
+    const { title, link, snippet } = result
     return (
       <ResultItem key={link} color='darkblue'>
         <a href={link}>{title}</a>
-        <p className="fm-search-highlight">{displayLink}</p>
+        <p className="fm-search-highlight">{link}</p>
         <p>{snippet}</p>
       </ResultItem>
     );

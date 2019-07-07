@@ -108,11 +108,8 @@ class Fm_Google_Site_Search_Public {
 
   public function search_site(WP_REST_Request $request) {
     $query = $request['query'];
-    
-    $next_page;
-    $prev_page;
     $base_url = 'https://www.googleapis.com/customsearch/v1';
-    $fields = 'items(title,link,displayLink,snippet),queries,searchInformation(formattedSearchTime,formattedTotalResults)';
+    $fields = 'items(title,link,snippet),queries,searchInformation(formattedSearchTime,formattedTotalResults)';
     global $wp_version;
     $args = array(
       'headers' => array(

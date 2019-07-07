@@ -14,8 +14,6 @@ function withData(WrappedComponent) {
         error: null,
         loading: false,
       }
-
-      this.searchSite = this.searchSite.bind(this);
     }
 
     componentDidMount() {

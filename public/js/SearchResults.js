@@ -34,6 +34,9 @@ const ResultItem = styled.li`
 `;
 
 function SearchResults(props) {
+
+  const { error } = props;
+
   const results = props.results !== null
     ? props.results.items
     : [];
@@ -48,6 +51,15 @@ function SearchResults(props) {
       </ResultItem>
     );
   }) : null;
+
+  switch(error) {
+    case 1:
+      return <p>Enter Search To Begin.</p>;
+    case 2:
+      return <p>Something wen't wrong.</p>
+    default:
+      break;
+  }
 
   if (displayResults === null) {
     return (

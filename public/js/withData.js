@@ -19,10 +19,14 @@ function withData(WrappedComponent) {
 
     componentDidMount() {
       const query = urlParams.get('query');
+      if (query === null) {
+        this.setState({error: 1});
+        return;
+      }
       fetch(`/wp-json/fm-google-site-search/v1/search_site/?query=${query}`)
         .then(res => res.json())
-        .then(results => this.setState({results, query}))
-        .catch(error => this.setState({error}))
+        .then(results => this.setState({results, query, error: null}))
+        .catch(() => this.setState({error: 2}))
     }
 
     async handleChange(event) {
@@ -32,10 +36,15 @@ function withData(WrappedComponent) {
     searchSite(event) {
       event.preventDefault();
       const { query } = this.state;
+      if (query === null) {
+        this.setState({error: 1});
+        return;
+      }
+      console.log(query)
       fetch(`/wp-json/fm-google-site-search/v1/search_site/?query=${query}`)
       .then(res => res.json())
-      .then(results => this.setState({results, query}))
-      .catch(error => this.setState({error}))
+      .then(results => this.setState({results, query, error: null}))
+      .catch(() => this.setState({error: 2}))
     }
 
     debounce(func, wait, immediate) {
